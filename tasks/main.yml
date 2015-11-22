@@ -1,0 +1,36 @@
+---
+  - name: 1. Install Web Server Tools
+    apt: name={{item}} state=present
+    with_items:
+      - apache2
+      - git
+      - php5
+      - php5-gd
+      - curl
+      - wget
+
+  - name: 2. Clone Wordpress repository from GitHub
+    git: repo=https://github.com/obthearchitect/Spoon-Knife.git
+         dest=/sites
+
+  - name: 3. Clear out the Apache Document root
+    file: path=/var/www/html 
+          state=absent
+
+  - name: 4. Create a symlink from our sites directory to Apaches document root
+    file: src=/sites 
+          dest=/var/www/html
+          state=link
+          force=yes
+
+  - name: 5. Adjustings Apache document root to point to /var/www/html
+    replace: dest=/etc/apache2/apache2.conf 
+             regexp="^<Directory /var/www/>"
+             replace="<Directory /var/www/html/>"
+             backup=yes
+    notify: restart apache2         
+
+  - name: 6. Start Apache and New Relic on boot
+    service: name={{item}} enabled=true
+    with_items:
+      - apache2
