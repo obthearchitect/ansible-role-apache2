@@ -10,7 +10,7 @@
       - wget
 
   - name: 2. Clone Wordpress repository from GitHub
-    git: repo=https://github.com/obthearchitect/Spoon-Knife.git
+    git: repo=https://github.com/wordpress/wordpress
          dest=/sites
 
   - name: 3. Clear out the Apache Document root
