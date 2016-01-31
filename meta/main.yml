@@ -4,11 +4,3 @@ galaxy_info:
   description: This role installs the following packages Apache2, php5, php5-gd, Git, Curl, wget
   license: MIT
   min_ansible_version: 1.9
-  platforms:
-  - name: Ubuntu
-    versions:
-    - Trust
-  galaxy_tags:
-    - acme
-    - installer
-    - web
