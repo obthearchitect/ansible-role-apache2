@@ -6,6 +6,7 @@
       - git
       - php5
       - php5-gd
+      - php5-mysql
       - curl
       - wget
 
